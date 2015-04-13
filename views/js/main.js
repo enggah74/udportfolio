@@ -18,6 +18,16 @@ cameron *at* udacity *dot* com
 
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
+/***
+04/12/15 - Rosario Safreno (macris936@yahoo.com)
+-Followed suggestion to define an array variable for all elements with a class of ".mover" globally. See updatePositions() for more info.
+-Created a global variable to obtain all the elements with a class = randomPizzaContainer
+-Created a global variable to get an element with an ID = randomPizzas.
+***/
+var items = document.getElementsByClassName(".mover");
+var elemList = document.getElementsByClassName(".randomPizzaContainer");
+var pizzasDiv = document.getElementById("randomPizzas");
+
 var pizzaIngredients = {};
 pizzaIngredients.meats = [
   "Pepperoni",
@@ -427,7 +437,6 @@ var resizePizzas = function(size) {
     var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
     var oldsize = oldwidth / windowwidth;
 
-    // TODO: change to 3 sizes? no more xl?
     // Changes the slider value to a percent width
     function sizeSwitcher (size) {
       switch(size) {
@@ -449,11 +458,18 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+  /***
+  04/12/15 - Rosario Safreno (macris936@yahoo.com)
+  -Substituted querySelectorAll with getElementsByClassName and created a global array variable, elementList,
+  to store all elements with a class name = randomPizzaContainer
+
+  ***/
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+
+    for (var i = 0; i < elemList.length; i++) {
+      var dx = determineDx(elemList[i], size);
+      var newwidth = (elemList[i].offsetWidth + dx) + 'px';
+      elemList[i].style.width = newwidth;
     }
   }
 
@@ -469,8 +485,12 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+/***
+04/12/15 - Rosario Safreno (macris936@yahoo.com)
+-Moved creation of variable pizzasDiv outside the loop and defined it globally.
+***/
+
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -498,13 +518,21 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
+/***
+04/12/2015 - updatePositions()
+  -Added a new variable, scrollVar, in line# 532 to replace the result of getting the # of pixels / 1250
+    when scrolling vertically. There is no need to divide it by 1250 in the loop all the time.
+  -Replaced the document.body.scrollTop / 1250 with the variable scrollVar in line# 535.
+  -function now uses the global array variable items[] which contains all elements with class = .mover.
+****/
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
+  var scrollVar = document.body.scrollTop / 1250;
+
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    var phase = Math.sin(scrollVar + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -522,18 +550,34 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
+/***
+04/12/2015
+  -Since 256 / 8 is always constant, I created a new variable, factor, to compute the result in line# 564.
+  This way, it is not computed all the time inside the loop per the new variable for the Math.floor function.
+  -I created variables for all the literals inside the loop (lines 565-570).
+  -I replaced lines# 574 to 580 to use the new variables to define the different attributes of the new image.
+  -I used the variable factor in line# 579.
+****/
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
-    elem.className = 'mover';
-    elem.src = "images/pizza.png";
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
+  var factor = cols/s;
+  var elem = document.createElement('img');
+  var moverClass = "mover";
+  var image = "images/pizza.png";
+  var height = "100px";
+  var width = "73.333px";
+  var movingPizzaElement = document.querySelector("#movingPizzas1");
+;
+  for (var i = 0; i < 25; i++) {
+
+    elem.className = moverClass;
+    elem.src = image;
+    elem.style.height = height;
+    elem.style.width = width;
     elem.basicLeft = (i % cols) * s;
-    elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    elem.style.top = (Math.floor(i * factor) + 'px';
+    movingPizzaElement.appendChild(elem);
   }
   updatePositions();
 });
