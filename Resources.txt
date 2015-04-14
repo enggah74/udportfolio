@@ -1,0 +1,90 @@
+https://developer.chrome.com/devtools/docs/javascript-memory-profiling
+https://developer.chrome.com/devtools/docs/memory-analysis-101
+https://developer.chrome.com/devtools
+http://www.webpagetest.org/chrome/timeline.php?test=150323_HQ_4S8&run=1
+http://www.webpagetest.org/chrome/timeline.php?test=150323_SJ_6D0&run=1
+http://www.webpagetest.org/chrome/timeline.php?test=150323_HN_6SX&run=1
+https://www.youtube.com/watch?v=RhaWYQ44WEc
+https://www.youtube.com/watch?v=BaneWEqNcpE
+https://developers.google.com/web/fundamentals/?hl=en
+https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=en
+http://discover-devtools.codeschool.com/
+https://developers.google.com/speed/pagespeed/insights/
+http://modernweb.com/2014/04/28/expose-yourself-with-ngrok/
+http://www.smashingmagazine.com/2011/01/12/guidelines-for-responsive-web-design/
+http://en.wikipedia.org/wiki/Above_the_fold
+https://support.google.com/analytics/answer/1205784?hl=en
+http://blog.teamtreehouse.com/install-node-js-npm-windows
+http://una.github.io/gulp-local-psi/
+http://moduscreate.com/get-up-and-running-with-grunt-js/
+https://github.com/jrcryer/grunt-pagespeed-ngrok-sample
+http://stackoverflow.com/questions/672732/prevent-long-running-javascript-from-locking-up-browser
+http://www.nczonline.net/blog/2009/01/05/what-determines-that-a-script-is-long-running/
+https://support.google.com/analytics/answer/1008080?hl=en&utm_medium=et&utm_campaign=en_us&utm_source=SetupChecklist#GA
+http://blog.teamtreehouse.com/using-github-pages-to-host-your-website
+
+3 buckets for web perf optimization
+1) Minimize bytes - minify, compress, cache (HTML, CSS, Javascript)
+2) Reduce critical rendering path - miify use of render blocking resources (CSS)
+    -use media queries on <link> to unblock rendering
+    -inline css
+3) Shorten CRP length(RTT) - minimize use of parser blocking resources
+    -defer Javascript execution
+    -use async attribute on <script>
+
+Apply content-specific optimizations first: CSS, JS, and HTML minifiers.
+Apply GZIP to compress the minified output.
+
+Image optimization: https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization?hl=en
+
+
+
+Using gulp
+https://quickleft.com/blog/grunt-js-tips-tricks/
+http://andy-carter.com/blog/a-beginners-guide-to-the-task-runner-gulp
+https://www.codefellows.org/blog/quick-intro-to-gulp-js
+https://www.npmjs.com/package/gulp-minify-css
+http://alfanso.com/minify-your-final-css-file-using-gulp-js/
+http://stackoverflow.com/questions/26273358/gulp-minify-all-css-files-to-a-single-file
+http://www.smashingmagazine.com/2014/06/11/building-with-gulp/
+http://markgoodyear.com/2014/01/getting-started-with-gulp/
+
+git
+https://github.com/sindresorhus/gulp-imagemin/issues/85
+http://rogerdudler.github.io/git-guide/
+http://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important
+http://makandracards.com/makandra/621-git-delete-a-branch-local-or-remote
+http://superuser.com/questions/294407/cant-remove-remote-branch-in-git
+
+git checkout -b gh-pages (create branch gh-pages from master)
+git push origin gh-pages (push branch to github remote repo)
+There were errors (see http://makandracards.com/makandra/621-git-delete-a-branch-local-or-remote)
+git fetch -p
+the above situation resulted where the default branch in github repo was gh-pages. In settings, change the default branch to master.
+
+git pull origin gh-pages (contained new file rosario.html)
+git push origin gh-pages (push all changes to branch)
+
+to pull from latest master
+git checkout gh-pages       checkout the branch
+git pull origin master      get the latest from remote master
+git push origin gh-pages    push the latest changes to the branch gh-pages
+
+Responsive Images
+http://www.sitepoint.com/css3-calc-function/
+http://www.imagemagick.org/script/binary-releases.php#windows
+
+
+My 3 favorite websites tested in webpagetest.org
+http://www.webpagetest.org/chrome/timeline.php?test=150324_58_QZ5&run=1   (590ms (amazon)
+http://www.webpagetest.org/chrome/timeline.php?test=150324_HP_R6Y&run=1   (217ms (cnn)
+http://www.webpagetest.org/chrome/timeline.php?test=150324_PE_RG7&run=1   (521ms (yahoo)
+
+
+P4 notes:
+https://github.com/udacity/fend-office-hours/tree/master/Web%20Optimization/Effective%20Optimizations%20for%2060%20FPS
+https://github.com/udacity/fend-office-hours/tree/master/Web%20Optimization/Project%204%20Overview
+http://www.w3schools.com/jsref/prop_element_scrolltop.asp
+
+
+
