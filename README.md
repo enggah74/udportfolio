@@ -115,6 +115,7 @@ How I accomplished the First Stage Optimization of making sure it's 60fps:
       var image = "images/pizza.png";
       var height = "100px";
       var width = "73.333px";
+      var movingPizzaElem = document.querySelector("#movingPizzas1");
 
       for (var i = 0; i < 200; i++) {
         elem = document.createElement('img');
@@ -124,7 +125,7 @@ How I accomplished the First Stage Optimization of making sure it's 60fps:
         elem.style.width = width;
         elem.basicLeft = (i % cols) * s;
         elem.style.top = (Math.floor(i * factor) + 'px';
-        document.querySelector("#movingPizzas1").appendChild(elem);
+        movingPizzaElem.appendChild(elem);
       }
       updatePositions();
     });
@@ -132,7 +133,10 @@ How I accomplished the First Stage Optimization of making sure it's 60fps:
     2.4 Decreased the # of iterations in addEventListener from 200 to 25:
       for (var i = 0; i < 25; i++)
 
-    2.5
+3.0 Second Stage Optimization:
+    3.1 I replaced all document.querySelectorAll with document.getElementsByClassName.
+    3.2 I added { backface-visibility: hidden; } under the .mover class in style.css.
+
 
 
 Comments:
