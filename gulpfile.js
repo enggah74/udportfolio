@@ -48,9 +48,9 @@ gulp.task('css', function(){
 
 // Concatenate and Minify css files for the views folder
 gulp.task('css1', function(){
-    return gulp.src('views/css/*.css')
+    return gulp.src('views/css/bootstrap-grid.css')
         .pipe(minifyCSS())
-        .pipe(rename('style.min.css'))
+        .pipe(rename('bootstrap-grid.min.css'))
         .pipe(gulp.dest('views/build/css'))
 		.pipe(notify({ message: 'CSS1 tasks complete' }));
 });

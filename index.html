@@ -10,37 +10,20 @@
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
     <!--<link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">-->
 
-    <!-- Inline style for print.css -->
-    <style>
-      @media print {
-        * {
-          background: transparent !important;
-          color: black !important;
-          text-shadow: none !important;
-          filter:none !important;
-          -ms-filter: none !important;
-        }
-        a, a:visited {
-          color: #444 !important;
-          text-decoration: underline;
-        }
-        a[href]:after { content: " (" attr(href) ")"; }
-
-        tr, img { page-break-inside: avoid; }
-        img { max-width: 100% !important; }
-
-        @page { margin: 0.5cm; }
-
-        p, h2, h3 {
-          orphans: 3;
-          widows: 3;
-        }
-        h2, h3 { page-break-after: avoid; }
-      }
-    </style>
-
     <!-- Inline style for style.css -->
     <style>
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2'), url(http://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+      }
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2) format('woff2'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+      }
       html {
         font-size: 100%;
         overflow-y: scroll;
@@ -90,9 +73,51 @@
         body { font-size: 12px;}
         header p { padding-left: 4.5em;}
       }
-
     </style>
 
+    <!-- Inline style for print.css -->
+    <style>
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2'), url(http://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+      }
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2) format('woff2'), url(http://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+      }
+      @media print {
+        * {
+          background: transparent !important;
+          color: black !important;
+          text-shadow: none !important;
+          filter:none !important;
+          -ms-filter: none !important;
+        }
+        a, a:visited {
+          color: #444 !important;
+          text-decoration: underline;
+        }
+        a[href]:after { content: " (" attr(href) ")"; }
+
+        tr, img { page-break-inside: avoid; }
+        img { max-width: 100% !important; }
+
+        @page { margin: 0.5cm; }
+
+        p, h2, h3 {
+          orphans: 3;
+          widows: 3;
+        }
+        h2, h3 { page-break-after: avoid; }
+      }
+    </style>
+
+
+    <!-- Code snippet from Google Analytics using my token id -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -118,9 +143,7 @@
         logCRP();
       });
     </script>
-
-
-
+    <script async src="http://www.google-analytics.com/analytics.js"></script>
   </head>
 
   <body>
@@ -155,7 +178,7 @@
           </li>
 
           <li>
-            <img style="width: 100px;" src="views/images/pizza.png">
+            <img style="width: 100px;" src="views/build/images/pizzeria.jpg">
             <a href="views/pizza.html">Cam's Pizzeria</a>
             <p>Who wants a performant pizza?</p>
           </li>
@@ -166,6 +189,6 @@
       <p>&copy; Web Performance 2015 <span id="crp-stats"></span></p>
     </footer>
 
-    <script src="http://www.google-analytics.com/analytics.js"></script>
+
   </body>
 </html>
