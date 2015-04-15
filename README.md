@@ -66,8 +66,9 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
 
 04/12/2015 (Rosario Safreno - macris936@yahoo.com):
 How I accomplished the First Stage Optimization of making sure it's 60fps:
+
 1. Attain a score of at least 90% in PageSpeed Insights as follows:
-  1. First I spent almost 3 weeks of just going through the Web Performance Optimization lessons, Google Web Performance Optimization articles, Google Web Fundamentals and Chrome Devtools tutorials.
+  1.  First I spent almost 3 weeks of just going through the Web Performance Optimization lessons, Google Web Performance Optimization articles, Google Web Fundamentals and Chrome Devtools tutorials.
   1.2 I created an account with Google Analytics, obtained a token id to substitute in script tags where it is required and replaced the script with the snippet code for my token id in Google Analytics.
   1.3 I obtained Chrome Canary and the PageSpeed Insights Chrome extension. I was able to follow the instructions to use my Android HTC One M8 where I would change my URL in Chrome Canary and it would reflect on my Android.
   1.4 I installed and executed ngrok and python SimpleHTTP server using port 8080 per instructions from Cameron Pittman's README.md.
