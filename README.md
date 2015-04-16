@@ -91,10 +91,11 @@ How I accomplished the First Stage Optimization of making sure it's 60fps:
     * Original main.js w/o any changes (Most of the frames were in the 30fps). I cannot paste screenshots here.
     * Updated function updatePositions() to replace with the following. I added a new variable, scrollVar, to replace the result of getting the # of pixels when vertical scroll moves.
     ```
-    var scrollVar = document.body.scrollTop / 1250;
+      var scrollVar = document.body.scrollTop / 1250;
+      var randomNumber = Math.floor(Math.random() * 5) + 1;
+      var phase = Math.sin(scrollvar + randomNumber);
 
       for (var i = 0; i < items.length; i++) {
-        var phase = Math.sin(scrollVar + (i % 5));
         items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
       }
     ```
