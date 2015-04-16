@@ -24,8 +24,7 @@ cameron *at* udacity *dot* com
 -Created a global variable to obtain all the elements with a class = randomPizzaContainer
 -Created a global variable to get an element with an ID = randomPizzas.
 ***/
-var items = document.getElementsByClassName(".mover");
-var elemList = document.getElementsByClassName(".randomPizzaContainer");
+var items = document.getElementsByClassName("mover");
 var pizzasDiv = document.getElementById("randomPizzas");
 
 var pizzaIngredients = {};
@@ -460,15 +459,19 @@ var resizePizzas = function(size) {
   // Iterates through pizza elements on the page and changes their widths
   /***
   04/12/15 - Rosario Safreno (macris936@yahoo.com)
-  -Substituted querySelectorAll with getElementsByClassName and created a global array variable, elementList,
+  -Substituted querySelectorAll with getElementsByClassName and created a local array variable, elementList,
   to store all elements with a class name = randomPizzaContainer
+  04/15/15 - Since there is only size, there is no need to iterate the value of dx and
+  newwidth. Just take the width of the first element of the local array
 
   ***/
   function changePizzaSizes(size) {
 
+    var elemList = document.getElementsByClassName("randomPizzaContainer");
+    var dx = determineDx(elemList[0], size);
+    var newwidth = (elemList[0].offsetWidth + dx) + 'px';
+
     for (var i = 0; i < elemList.length; i++) {
-      var dx = determineDx(elemList[i], size);
-      var newwidth = (elemList[i].offsetWidth + dx) + 'px';
       elemList[i].style.width = newwidth;
     }
   }
@@ -523,16 +526,18 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   -Added a new variable, scrollVar, in line# 532 to replace the result of getting the # of pixels / 1250
     when scrolling vertically. There is no need to divide it by 1250 in the loop all the time.
   -Replaced the document.body.scrollTop / 1250 with the variable scrollVar in line# 535.
-  -function now uses the global array variable items[] which contains all elements with class = .mover.
+  -Function now uses the global array variable items[] which contains all elements with class = .mover.
+  -Moved the variable phase out of the loop and replaced the modulus to a random number between 1-5.
 ****/
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
   var scrollVar = document.body.scrollTop / 1250;
+  var randomNumber = Math.floor(Math.random() * 5) + 1)
+  var phase = Math.sin(scrollvar + randomNumber);
 
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin(scrollVar + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
