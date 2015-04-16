@@ -463,7 +463,6 @@ var resizePizzas = function(size) {
   to store all elements with a class name = randomPizzaContainer
   04/15/15 - Since there is only size, there is no need to iterate the value of dx and
   newwidth. Just take the width of the first element of the local array
-
   ***/
   function changePizzaSizes(size) {
 
@@ -534,7 +533,7 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var scrollVar = document.body.scrollTop / 1250;
-  var randomNumber = Math.floor(Math.random() * 5) + 1)
+  var randomNumber = Math.floor(Math.random() * 5) + 1;
   var phase = Math.sin(scrollvar + randomNumber);
 
   for (var i = 0; i < items.length; i++) {
@@ -573,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var height = "100px";
   var width = "73.333px";
   var movingPizzaElement = document.querySelector("#movingPizzas1");
-;
+
   for (var i = 0; i < 25; i++) {
 
     elem.className = moverClass;
@@ -581,7 +580,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.height = height;
     elem.style.width = width;
     elem.basicLeft = (i % cols) * s;
-    elem.style.top = (Math.floor(i * factor) + 'px';
+    elem.style.top = (Math.floor(i * factor)) + 'px';
     movingPizzaElement.appendChild(elem);
   }
   updatePositions();

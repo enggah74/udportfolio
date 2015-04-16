@@ -136,6 +136,7 @@ How I accomplished the First Stage Optimization of making sure it's 60fps:
     * I replaced all document.querySelectorAll with document.getElementsByClassName.
     * I added { backface-visibility: hidden; } under the .mover class in style.css.
     * I moved the 2 lines to determine the difference between the new and old width and the new width of the new pizza.
+    * Moved calculation of phase out of the iteration in updatePositions()
 
 ### Comments
 ```

@@ -86,7 +86,7 @@ gulp.task('watch', function() {
 	gulp.watch(['css/*.css','views/css/*.css'], ['css','css1']);
 
 	// Watch image files
-	gulp.watch(['img/*.{pmg,jpg}','views/images/*.{pmg,jpg}'], ['images','images1']);
+	gulp.watch(['img/*.{png,jpg}','views/images/*.{png,jpg}'], ['images','images1']);
 
 	// Create LiveReload server
 	livereload.listen();
