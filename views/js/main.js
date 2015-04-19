@@ -18,15 +18,6 @@ cameron *at* udacity *dot* com
 
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
-/***
-04/12/15 - Rosario Safreno (macris936@yahoo.com)
--Followed suggestion to define an array variable for all elements with a class of ".mover" globally. See updatePositions() for more info.
--Created a global variable to obtain all the elements with a class = randomPizzaContainer
--Created a global variable to get an element with an ID = randomPizzas.
-***/
-var items = document.getElementsByClassName("mover");
-var pizzasDiv = document.getElementById("randomPizzas");
-
 var pizzaIngredients = {};
 pizzaIngredients.meats = [
   "Pepperoni",
@@ -458,20 +449,22 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   /***
-  04/12/15 - Rosario Safreno (macris936@yahoo.com)
-  -Substituted querySelectorAll with getElementsByClassName and created a local array variable, elementList,
-  to store all elements with a class name = randomPizzaContainer
-  04/15/15 - Since there is only size, there is no need to iterate the value of dx and
-  newwidth. Just take the width of the first element of the local array
-  ***/
+  04/18/15
+  -Defined a new array pizzaList for all elements with class=randomPizzaContainer and replaced all its references.
+  -Moved variables dx and newwidth outside of the loop since both are constant based on the size since there is only
+  value of the size passed. After moving these values out of the loop, the time to resize pizzas measured from
+  200-300ms to 1.44ms
+  -
+  **/
   function changePizzaSizes(size) {
+    var pizzaList = document.getElementsByClassName(".randomPizzaContainer");
+    var dx = determineDx(pizzaList[0], size);
+    var newwidth = (pizzaList[0].offsetWidth + dx) + 'px';
 
-    var elemList = document.getElementsByClassName("randomPizzaContainer");
-    var dx = determineDx(elemList[0], size);
-    var newwidth = (elemList[0].offsetWidth + dx) + 'px';
-
-    for (var i = 0; i < elemList.length; i++) {
-      elemList[i].style.width = newwidth;
+    for (var i = 0; i < pizzaList.length; i++) {
+      //var dx = determineDx(pizzaList[i], size);
+      //var newwidth = (pizzaList[i].offsetWidth + dx) + 'px';
+      pizzaList[i].style.width = newwidth;
     }
   }
 
@@ -488,11 +481,11 @@ window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
 /***
-04/12/15 - Rosario Safreno (macris936@yahoo.com)
--Moved creation of variable pizzasDiv outside the loop and defined it globally.
-***/
-
+04/18/15 - Moved definition of pizzasDiv outside of the loop
+**/
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
+  //var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -522,21 +515,23 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // Moves the sliding background pizzas based on scroll position
 /***
 04/12/2015 - updatePositions()
-  -Added a new variable, scrollVar, in line# 532 to replace the result of getting the # of pixels / 1250
+  -Added a new variable, scrollVar, to replace the result of getting the # of pixels / 1250
     when scrolling vertically. There is no need to divide it by 1250 in the loop all the time.
-  -Replaced the document.body.scrollTop / 1250 with the variable scrollVar in line# 535.
-  -Function now uses the global array variable items[] which contains all elements with class = .mover.
-  -Moved the variable phase out of the loop and replaced the modulus to a random number between 1-5.
+  -Replaced the document.body.scrollTop / 1250 with the variable scrollVar.
+  -Created a new array variable, items, which contains all elements with class = ".mover" and replaced all
+  references with items using getElementsByClassName instead of querySelectorAll.
 ****/
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
+  var items = document.getElementsByClassName("mover");
+  //var items = document.querySelectorAll('.mover');
   var scrollVar = document.body.scrollTop / 1250;
-  var randomNumber = Math.floor(Math.random() * 5) + 1;
-  var phase = Math.sin(scrollvar + randomNumber);
 
   for (var i = 0; i < items.length; i++) {
+    var phase = Math.sin(scrollVar + (i % 5));
+    //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -556,32 +551,29 @@ window.addEventListener('scroll', updatePositions);
 // Generates the sliding pizzas when the page loads.
 /***
 04/12/2015
-  -Since 256 / 8 is always constant, I created a new variable, factor, to compute the result in line# 564.
-  This way, it is not computed all the time inside the loop per the new variable for the Math.floor function.
-  -I created variables for all the literals inside the loop (lines 565-570).
-  -I replaced lines# 574 to 580 to use the new variables to define the different attributes of the new image.
-  -I used the variable factor in line# 579.
+  -Since 256 / 8 is always constant, I created a new variable, factor, and used it to compute the style.top.
+  This way, it is not computed all the time inside the loop with factor as the variable for the Math.floor function.
+  -Provided a new variable, movingPizza, to define the element movingPizzas1 outside the loop.
+  -Reduced the # of iterations to generate moving pizzas from 200 to 50.
 ****/
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  var factor = cols/s;
-  var elem = document.createElement('img');
-  var moverClass = "mover";
-  var image = "images/pizza.png";
-  var height = "100px";
-  var width = "73.333px";
-  var movingPizzaElement = document.querySelector("#movingPizzas1");
+  var factor = s / cols;
+  var movingPizza = document.querySelector("#movingPizzas1");
 
-  for (var i = 0; i < 25; i++) {
-
-    elem.className = moverClass;
-    elem.src = image;
-    elem.style.height = height;
-    elem.style.width = width;
+  //for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 50; i++) {
+    var elem = document.createElement('img');
+    elem.className = 'mover';
+    elem.src = "images/pizza.png";
+    elem.style.height = "100px";
+    elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
-    elem.style.top = (Math.floor(i * factor)) + 'px';
-    movingPizzaElement.appendChild(elem);
+    elem.style.top = Math.floor(i * factor) + 'px';
+    //elem.style.top = (Math.floor(i / cols) * s) + 'px';
+    movingPizza.appendChild(elem);
+    //document.querySelector("#movingPizzas1").appendChild(elem);
   }
   updatePositions();
 });
