@@ -89,21 +89,21 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
   1. First Stage Optimization:
     * Original main.js w/o any changes (Most of the frames were in the 30fps). I cannot paste screenshots here.
     * Updated event for addEventListener with the following:
-    -Since 256 / 8 is always constant, I created a new variable, factor, and used it to compute the style.top. This way, it is not computed all the time inside the loop with factor as the variable for the Math.floor function.
-    -Provided a new variable, movingPizza, to define the element movingPizzas1 outside the loop.
-    -Reduced the # of iterations to generate moving pizzas from 200 to 50.
+      * Since 256 / 8 is always constant, I created a new variable, factor, and used it to compute the style.top. This way, it is not computed all the time inside the loop with factor as the variable for the Math.floor function.
+      * Provided a new variable, movingPizza, to define the element movingPizzas1 outside the loop.
+      * Reduced the # of iterations to generate moving pizzas from 200 to 50.
     * Updated function updatePositions() as follows:
-    -Added a new variable, scrollVar, to replace the result of getting the # of pixels / 1250 when scrolling vertically. There is no need to divide it by 1250 in the loop all the time.
-    -Replaced the document.body.scrollTop / 1250 with the variable scrollVar.
-    -Created a new array variable, items, which contains all elements with class = ".mover" and replaced all references with items using getElementsByClassName instead of querySelectorAll. to replace with the following. I added a new variable, scrollVar, to replace the result of getting the # of pixels when vertical scroll moves.
-    * Moved definition of pizzasDiv outside of the loop in the main logic.
+      * Added a new variable, scrollVar, to replace the result of getting the # of pixels / 1250 when scrolling vertically. There is no need to divide it by 1250 in the loop all the time.
+      * Replaced the document.body.scrollTop / 1250 with the variable scrollVar.
+      * Created a new array variable, items, which contains all elements with class = ".mover" and replaced all references with items using getElementsByClassName instead of querySelectorAll. to replace with the following. I added a new variable, scrollVar, to replace the result of getting the # of pixels when vertical scroll moves.
+      * Moved definition of pizzasDiv outside of the loop in the main logic.
 
   1. Second Stage Optimization:
-    * Uupdated the function change PizzaSlices as follows:
-    -Defined a new array pizzaList for all elements with class=randomPizzaContainer and replaced all its references.
-    -Moved variables dx and newwidth outside of the loop since both are constant based on the size since there is only value of the size passed. After moving these values out of the loop, the time to resize pizzas measured from 200-300ms to 1.44ms.
-    -Replaced all document.querySelectorAll with document.getElementsByClassName.
-    -Added { backface-visibility: hidden; } under the .mover class in style.css.
+    * Updated the function change PizzaSlices as follows:
+      * Defined a new array pizzaList for all elements with class=randomPizzaContainer and replaced all its references.
+      * Moved variables dx and newwidth outside of the loop since both are constant based on the size since there is only value of the size passed. After moving these values out of the loop, the time to resize pizzas measured from 200-300ms to 1.44ms.
+      * Replaced all document.querySelectorAll with document.getElementsByClassName.
+      * Added { backface-visibility: hidden; } under the .mover class in style.css.
 
 ### Comments
 ```
