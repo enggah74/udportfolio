@@ -48,11 +48,20 @@ gulp.task('css', function(){
 
 // Concatenate and Minify css files for the views folder
 gulp.task('css1', function(){
+    return gulp.src('views/css/style.css')
+        .pipe(minifyCSS())
+        .pipe(rename('style.min.css'))
+        .pipe(gulp.dest('views/build/css'))
+		.pipe(notify({ message: 'CSS1 tasks complete' }));
+});
+
+// Concatenate and Minify css files for the views folder
+gulp.task('css2', function(){
     return gulp.src('views/css/bootstrap-grid.css')
         .pipe(minifyCSS())
         .pipe(rename('bootstrap-grid.min.css'))
         .pipe(gulp.dest('views/build/css'))
-		.pipe(notify({ message: 'CSS1 tasks complete' }));
+		.pipe(notify({ message: 'CSS2 tasks complete' }));
 });
 
 // Minify and cache image files
@@ -83,10 +92,10 @@ gulp.task('watch', function() {
 	gulp.watch(['js/*.js','views/js/*.js'], ['scripts','scripts1']);
 
 	// Watch .css files
-	gulp.watch(['css/*.css','views/css/*.css'], ['css','css1']);
+	gulp.watch(['css/*.css','views/css/*.css'], ['css','css1','css2']);
 
 	// Watch image files
-	gulp.watch(['img/*.{png,jpg}','views/images/*.{png,jpg}'], ['images','images1']);
+	gulp.watch(['img/*.{png,jpg}','views/images/*.{png,jpg}'], ['images']);
 
 	// Create LiveReload server
 	livereload.listen();
@@ -97,6 +106,6 @@ gulp.task('watch', function() {
 
 // Define default task when running gulp in CLI that includes the above tasks
 gulp.task('default',['clean'], function() {
-	gulp.start('scripts','scripts1','css','css1','images','images1','watch');
+	gulp.start('scripts','scripts1','css','css1','css2','images','watch');
 });
 
