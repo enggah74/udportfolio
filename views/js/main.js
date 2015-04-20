@@ -515,24 +515,21 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // Moves the sliding background pizzas based on scroll position
 /***
 04/12/2015 - updatePositions()
-  -Added a new variable, scrollVar, to replace the result of getting the # of pixels / 1250
-    when scrolling vertically. There is no need to divide it by 1250 in the loop all the time.
-  -Replaced the document.body.scrollTop / 1250 with the variable scrollVar.
-  -Created a new array variable, items, which contains all elements with class = ".mover" and replaced all
-  references with items using getElementsByClassName instead of querySelectorAll.
+  -Moved the calculation of the variable phase out of the loop minus the modulo.
+  -Created a new array variable, items, which contains all elements with class = ".mover"
+  and replaced all references with items using getElementsByClassName instead of querySelectorAll.
 ****/
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
   var items = document.getElementsByClassName("mover");
-  //var items = document.querySelectorAll('.mover');
-  var scrollVar = document.body.scrollTop / 1250;
+  var phase = Math.sin(document.body.scrollTop / 1250;
 
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin(scrollVar + (i % 5));
     //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    items[i].style.left = items[i].basicLeft + 100 * (phase + (i % 5)) + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -554,7 +551,6 @@ window.addEventListener('scroll', updatePositions);
   -Since 256 / 8 is always constant, I created a new variable, factor, and used it to compute the style.top.
   This way, it is not computed all the time inside the loop with factor as the variable for the Math.floor function.
   -Provided a new variable, movingPizza, to define the element movingPizzas1 outside the loop.
-  -Reduced the # of iterations to generate moving pizzas from 200 to 50.
 ****/
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
@@ -562,8 +558,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var factor = s / cols;
   var movingPizza = document.querySelector("#movingPizzas1");
 
-  //for (var i = 0; i < 200; i++) {
-  for (var i = 0; i < 50; i++) {
+  for (var i = 0; i < 200; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";

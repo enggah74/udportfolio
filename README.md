@@ -65,7 +65,7 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
 * <a href="http://www.84colors.com/portfolio.html">http://www.84colors.com/portfolio.html</a>
 
 ### Rosario Safreno's changes for P4 Web Performance Optimization
-04/12/2015/04/18/2015: How I accomplished the First Stage Optimization of making sure it's 60fps:
+04/12/2015/04/20/2015: How I accomplished the First Stage Optimization of making sure it's 60fps:
   1. Attain a score of at least 90% in PageSpeed Insights as follows:
     * First I spent almost 3 weeks of just going through the Web Performance Optimization lessons, Google Web Performance Optimization articles, Google Web Fundamentals and Chrome Devtools tutorials.
     * I created an account with Google Analytics, obtained a token id to substitute in script tags where it is required and replaced the script with the snippet code for my token id in Google Analytics.
@@ -91,11 +91,9 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
     * Updated event for addEventListener with the following:
       * Since 256 / 8 is always constant, I created a new variable, factor, and used it to compute the style.top. This way, it is not computed all the time inside the loop with factor as the variable for the Math.floor function.
       * Provided a new variable, movingPizza, to define the element movingPizzas1 outside the loop.
-      * Reduced the # of iterations to generate moving pizzas from 200 to 50.
     * Updated function updatePositions() as follows:
-      * Added a new variable, scrollVar, to replace the result of getting the # of pixels / 1250 when scrolling vertically. There is no need to divide it by 1250 in the loop all the time.
-      * Replaced the document.body.scrollTop / 1250 with the variable scrollVar.
-      * Created a new array variable, items, which contains all elements with class = ".mover" and replaced all references with items using getElementsByClassName instead of querySelectorAll. to replace with the following. I added a new variable, scrollVar, to replace the result of getting the # of pixels when vertical scroll moves.
+      * Moved the calculation of the variable phase out of the loop minus the modulo.
+      * Created a new array variable, items, which contains all elements with class = ".mover and replaced all references with items using getElementsByClassName instead of querySelectorAll.
       * Moved definition of pizzasDiv outside of the loop in the main logic.
 
   1. Second Stage Optimization:
