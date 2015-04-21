@@ -22,6 +22,7 @@ http://stackoverflow.com/questions/672732/prevent-long-running-javascript-from-l
 http://www.nczonline.net/blog/2009/01/05/what-determines-that-a-script-is-long-running/
 https://support.google.com/analytics/answer/1008080?hl=en&utm_medium=et&utm_campaign=en_us&utm_source=SetupChecklist#GA
 http://blog.teamtreehouse.com/using-github-pages-to-host-your-website
+http://www.sitepoint.com/optimizing-critical-rendering-path/
 
 3 buckets for web perf optimization
 1) Minimize bytes - minify, compress, cache (HTML, CSS, Javascript)
@@ -55,7 +56,9 @@ http://rogerdudler.github.io/git-guide/
 http://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important
 http://makandracards.com/makandra/621-git-delete-a-branch-local-or-remote
 http://superuser.com/questions/294407/cant-remove-remote-branch-in-git
+http://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
 
+to create new branch gh-pages to use the github host
 git checkout -b gh-pages (create branch gh-pages from master)
 git push origin gh-pages (push branch to github remote repo)
 There were errors (see http://makandracards.com/makandra/621-git-delete-a-branch-local-or-remote)
@@ -69,6 +72,14 @@ to pull from latest master
 git checkout gh-pages       checkout the branch
 git pull origin master      get the latest from remote master
 git push origin gh-pages    push the latest changes to the branch gh-pages
+
+to force delete gh-pages ignoring all changes
+git branch -D gh-pages
+
+to go back to the head revision if there were changes made in gh-pages or origin/master
+git checkout gh-pages
+git checkout -- views/js/main.js
+git checkout -- views/build/js/main.min.js
 
 Responsive Images
 http://www.sitepoint.com/css3-calc-function/
@@ -85,6 +96,3 @@ P4 notes:
 https://github.com/udacity/fend-office-hours/tree/master/Web%20Optimization/Effective%20Optimizations%20for%2060%20FPS
 https://github.com/udacity/fend-office-hours/tree/master/Web%20Optimization/Project%204%20Overview
 http://www.w3schools.com/jsref/prop_element_scrolltop.asp
-
-
-

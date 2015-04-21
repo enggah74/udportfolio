@@ -65,7 +65,7 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
 * <a href="http://www.84colors.com/portfolio.html">http://www.84colors.com/portfolio.html</a>
 
 ### Rosario Safreno's changes for P4 Web Performance Optimization
-04/12/2015/04/20/2015: How I accomplished the First Stage Optimization of making sure it's 60fps:
+04/12/2015/04/22/2015: How I accomplished the First Stage Optimization of making sure it's 60fps:
   1. Attain a score of at least 90% in PageSpeed Insights as follows:
     * First I spent almost 3 weeks of just going through the Web Performance Optimization lessons, Google Web Performance Optimization articles, Google Web Fundamentals and Chrome Devtools tutorials.
     * I created an account with Google Analytics, obtained a token id to substitute in script tags where it is required and replaced the script with the snippet code for my token id in Google Analytics.
@@ -92,9 +92,10 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
       * Since 256 / 8 is always constant, I created a new variable, factor, and used it to compute the style.top. This way, it is not computed all the time inside the loop with factor as the variable for the Math.floor function.
       * Provided a new variable, movingPizza, to define the element movingPizzas1 outside the loop.
     * Updated function updatePositions() as follows:
+      * Defined a new variable to store the # of pixels bar was scrolled to the top
+      * Defined phase as an array variable to store the 5 possible values including calculation of Math.sin and moved it outside of the loop
       * Moved the calculation of the variable phase out of the loop minus the modulo.
-      * Created a new array variable, items, which contains all elements with class = ".mover and replaced all references with items using getElementsByClassName instead of querySelectorAll.
-      * Moved definition of pizzasDiv outside of the loop in the main logic.
+      * Created a new array variable, items, which contains all elements with class = ".mover" and replaced all references with items using getElementsByClassName instead of querySelectorAll.
 
   1. Second Stage Optimization:
     * Updated the function change PizzaSlices as follows:

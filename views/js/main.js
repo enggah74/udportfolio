@@ -457,7 +457,7 @@ var resizePizzas = function(size) {
   -
   **/
   function changePizzaSizes(size) {
-    var pizzaList = document.getElementsByClassName(".randomPizzaContainer");
+    var pizzaList = document.getElementsByClassName("randomPizzaContainer");
     var dx = determineDx(pizzaList[0], size);
     var newwidth = (pizzaList[0].offsetWidth + dx) + 'px';
 
@@ -515,6 +515,9 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // Moves the sliding background pizzas based on scroll position
 /***
 04/12/2015 - updatePositions()
+  -Defined a new variable to store the # of pixels bar was scrolled to the top
+  -Defined phase as an array variable to store the 5 possible values including
+  calculation of Math.sin and moved it outside of the loop.
   -Moved the calculation of the variable phase out of the loop minus the modulo.
   -Created a new array variable, items, which contains all elements with class = ".mover"
   and replaced all references with items using getElementsByClassName instead of querySelectorAll.
@@ -524,12 +527,17 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.getElementsByClassName("mover");
-  var phase = Math.sin(document.body.scrollTop / 1250;
+  var scrollVar = document.body.scrollTop / 1250;
+  var phase = [];
+
+  for (var j = 0; j < 5; j++) {
+    phase[j] = Math.sin(scrollVar + j);
+  }
 
   for (var i = 0; i < items.length; i++) {
     //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    items[i].style.left = items[i].basicLeft + 100 * (phase + (i % 5)) + 'px';
+    items[i].style.left = items[i].basicLeft + 100 * (phase[i % 5]) + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
