@@ -96,6 +96,7 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
       * Defined phase as an array variable to store the 5 possible values including calculation of Math.sin and moved it outside of the loop
       * Moved the calculation of the variable phase out of the loop minus the modulo.
       * Created a new array variable, items, which contains all elements with class = ".mover" and replaced all references with items using getElementsByClassName instead of querySelectorAll.
+      * Reduced # of pizzas to be generated from 200 to 100.
 
   1. Second Stage Optimization:
     * Updated the function change PizzaSlices as follows:

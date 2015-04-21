@@ -559,6 +559,7 @@ window.addEventListener('scroll', updatePositions);
   -Since 256 / 8 is always constant, I created a new variable, factor, and used it to compute the style.top.
   This way, it is not computed all the time inside the loop with factor as the variable for the Math.floor function.
   -Provided a new variable, movingPizza, to define the element movingPizzas1 outside the loop.
+  -Reduced # of pizzas from 200 to 100.
 ****/
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
@@ -566,7 +567,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var factor = s / cols;
   var movingPizza = document.querySelector("#movingPizzas1");
 
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 100; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
